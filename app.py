@@ -10,6 +10,7 @@
 
 from flask import Flask, render_template, redirect, request
 from flask_mail import Mail, Message #Importa o Mail e o Message do flask_mail para facilitar o envio de emails
+from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
@@ -27,18 +28,36 @@ mail_settings = {
 app.config.update(mail_settings) #atualizar as configurações do app com o dicionário mail_settings
 mail = Mail(app) # atribuir a class Mail o app atual.
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ylselsuy:NuSVipuZG7j7MolAE3CKQLgX4wqKGBGe@kesavan.db.elephantsql.com/ylselsuy'
+db = SQLAlchemy(app)
 
-#Classe para capturar as informações do formulário de forma mais organizada
+
+# Classes:
+
 class Contato:
    def __init__ (self, nome, email, mensagem):
       self.nome = nome
       self.email = email
       self.mensagem = mensagem
 
+class Projeto(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nome = db.Column(db.String(150), nullable=False)
+    imagem = db.Column(db.String(500), nullable=False)
+    descricao = db.Column(db.String(500), nullable=False)
+    link = db.Column(db.String(300), nullable=False)
+
+    def __init__(self, nome, imagem, descricao, link):
+        self.nome = nome
+        self.imagem = imagem
+        self.descricao = descricao
+        self.link = link
+
 # Rota principal apenas para renderizar a página principal.
 @app.route('/')
 def index():
-   return render_template('index.html')
+   projetos = Projeto.query.all()
+   return render_template('index.html', projetos=projetos)
 
 # Rota de envio de email.
 @app.route('/send', methods=['GET', 'POST'])
@@ -64,5 +83,23 @@ def send():
       mail.send(msg) #envio efetivo do objeto msg através do método send() que vem do Flask_Mail
    return render_template('send.html', formContato=formContato) # Renderiza a página de confirmação de envio.
 
+# Rotas do CRUD
+
+@app.route('/new', methods=['GET', 'POST'])
+def new():
+   if request.method == 'POST':
+      projeto = Projeto(
+         request.form['nome'],
+         request.form['imagem'],
+         request.form['descricao'],
+         request.form['link']
+      )
+      db.session.add(projeto)
+      db.session.commit()
+      return redirect('/#projetos')
+   return render_template('new.html')
+
+
 if __name__ == '__main__':
+   db.create_all()
    app.run(debug=True)

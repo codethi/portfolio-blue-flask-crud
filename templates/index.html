@@ -55,42 +55,17 @@
 
 
    <section id="projetos">
+      
+      <a href="/new">Novo projeto</a>
 
+      {% for p in projetos %}
       <div>
-         <img src="../static/img/img-lerem.png" alt="img-lorem">
-         <h2>Projeto 1</h2>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem accusamus provident eum voluptas officia
-            hic amet laudantium, porro possimus suscipit sequi harum fuga qui! Dignissimos distinctio voluptates
-            aspernatur minus temporibus.</p>
-         <button>Veja mais</button>
+         <img src="https://i.imgur.com/yXIgwgo.png" alt="img-lorem">
+         <h2>{{p.nome}}</h2>
+         <p>{{p.descricao}}</p>
+         <a href="{{p.link}}" target="_blank">Veja mais</a>
       </div>
-
-      <div>
-         <img src="../static/img/img-lerem.png" alt="img-lorem">
-         <h2>Projeto 2</h2>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem accusamus provident eum voluptas officia
-            hic amet laudantium, porro possimus suscipit sequi harum fuga qui! Dignissimos distinctio voluptates
-            aspernatur minus temporibus.</p>
-         <button>Veja mais</button>
-      </div>
-
-      <div>
-         <img src="../static/img/img-lerem.png" alt="img-lorem">
-         <h2>Projeto 3</h2>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem accusamus provident eum voluptas officia
-            hic amet laudantium, porro possimus suscipit sequi harum fuga qui! Dignissimos distinctio voluptates
-            aspernatur minus temporibus.</p>
-         <button>Veja mais</button>
-      </div>
-
-      <div>
-         <img src="../static/img/img-lerem.png" alt="img-lorem">
-         <h2>Projeto 4</h2>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem accusamus provident eum voluptas officia
-            hic amet laudantium, porro possimus suscipit sequi harum fuga qui! Dignissimos distinctio voluptates
-            aspernatur minus temporibus.</p>
-         <button>Veja mais</button>
-      </div>
+      {% endfor %}
 
    </section>
 

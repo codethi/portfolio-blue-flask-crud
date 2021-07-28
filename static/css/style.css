@@ -27,6 +27,7 @@ nav {
   background-color: #0066ff;
   position: fixed;
   width: 100%;
+  z-index: 1;
 }
 
 nav ul li a {
@@ -100,17 +101,21 @@ section#projetos {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   padding: 3rem;
+  position: relative;
 }
 
 section#projetos div {
   padding: 2rem;
-  margin: 0 1rem 0 1rem;
+  margin: 1rem 1rem 1rem 1rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  width: 20rem;
+ 
 }
 
 section#projetos div p {
-  text-align: justify;
+  text-align: center;
 }
 
 section#projetos div h2 {
@@ -123,7 +128,7 @@ section#projetos div img {
   margin: auto;
 }
 
-section#projetos div button {
+section#projetos div a {
   border: 1px solid #0066ff;
   background-color: #fff;
   color: #0066ff;
@@ -131,17 +136,30 @@ section#projetos div button {
   font-weight: 600;
   padding: 1rem;
   border-radius: 0.5rem;
-  display: block;
-  margin: auto;
-  margin-top: 2rem;
   cursor: pointer;
+  margin-top: 10rem !important;
   transition: 0.6s ease-in-out;
 }
 
-section#projetos div button:hover {
+section#projetos div a:hover {
   background-color: #0066ff;
   color: #fff;
 }
+
+section#projetos a{
+  width: 100%;
+  padding: 3rem;
+  text-align: end;
+  text-decoration: none;
+  color: #0066ff;
+  font-size: 1.5rem;
+  transition: all .2s ease-out;
+}
+
+section#projetos a:hover{
+  font-weight: 700;
+}
+
 
 section#habilidades {
   padding: 3rem 10rem 3rem 10rem;
@@ -450,4 +468,72 @@ section#success div#card a{
 section#success div#card a:hover{
   background-color: rgb(0, 88, 0);
   color: #fff;
+}
+
+
+/* Página new */
+
+section#new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section#new form{
+  padding: 3rem;
+  background-color: #fff;
+  width: 50rem;
+  border-radius: 2rem;
+  margin: 3rem;
+  position: relative;
+}
+
+section#new form h1{
+  padding-bottom: 3rem;
+  text-align: center;
+  color: #0066ff ;
+  font-size: 2rem;
+}
+
+section#new form input, textarea{
+  width: 100%;
+  padding: 0.5em;
+  font-size: 1.2rem;
+  margin: 0 0 1em;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+section#new form label {
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+section#new form button {
+  border: 1px solid #0066ff;
+  background-color: #fff;
+  color: #0066ff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: block;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  cursor: pointer;
+  transition: 0.6s ease-in-out;
+  width: 40%;
+}
+
+section#new form button:hover {
+  background-color: #0066ff;
+  color: #fff;
+}
+
+section#new form a{
+  text-decoration: none;
+  color: #0066ff;
+  font-size: 2rem;
+  position: absolute;
 }
