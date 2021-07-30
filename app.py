@@ -13,7 +13,7 @@
 from flask import Flask, render_template, redirect, request, session, flash
 from flask_mail import Mail, Message #Importa o Mail e o Message do flask_mail para facilitar o envio de emails
 from flask_sqlalchemy import SQLAlchemy # ORM responsável por realizar as operações do banco de dados via Python
-# from mail_config import email, mail_senha # Módulo para esconder meu user e senha do email.
+from config import email, mail_senha, url_postegresql, admin_senha # Módulo para esconder meu user e senha do email.
 
 app = Flask(__name__)
 app.secret_key = 'bluedtech' # Chave de criptografia para guardar sessão de login
@@ -24,8 +24,8 @@ mail_settings = {
     "MAIL_PORT": 465,
     "MAIL_USE_TLS": False,
     "MAIL_USE_SSL": True,
-   #  "MAIL_USERNAME": email,
-   #  "MAIL_PASSWORD": mail_senha
+    "MAIL_USERNAME": email,
+    "MAIL_PASSWORD": mail_senha
 }
 
 app.config.update(mail_settings) #atualizar as configurações do app com o dicionário mail_settings
@@ -34,7 +34,7 @@ mail = Mail(app) # atribuir a class Mail o app atual.
 # Conexão com o banco de dados, o nome entre os colchetes é padrão, o endereço do banco nós achamos nos Datails da instancia do nosso banco no ElephantSQL, no campo URL
 # ATENÇÃO! A URL do ElephantSQL vem como postegres://(o resto da URL). 
 # Modifique essa parte antes do // para postegresql://(o resto da URL)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://(coloque aqui o resto da url)'
+app.config['SQLALCHEMY_DATABASE_URI'] = url_postegresql
 db = SQLAlchemy(app) # Instancia o objeto db na classe SQLAlchemy e adiciona essa aplicação nela.
 
 #--------------------------------
@@ -108,7 +108,7 @@ def login():
 
 @app.route('/auth', methods=['GET', 'POST']) # Rota de autenticação
 def auth():
-   if request.form['senha'] == 'admin': # Se a senha for 'admin' faça:
+   if request.form['senha'] == admin_senha: # Se a senha for 'admin' faça:
       session['usuario_logado'] = 'admin' # Adiciona um usuario na sessão
       flash('Login feito com sucesso!') # Envia mensagem de sucesso
       return redirect('/adm') # Redireciona para a rota adm
