@@ -127,7 +127,8 @@ section#projetos div#card h2 {
 section#projetos div#card img {
   display: block;
   margin: auto;
-  width: 50%;
+  width: 10rem;
+  height: 10rem;
   position: relative;
 }
 

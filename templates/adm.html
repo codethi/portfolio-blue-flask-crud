@@ -38,10 +38,15 @@
                 <i class="fa fa-plus-square" aria-hidden="true"></i>
                 Listar projetos</li>
             </a> 
+            <a href="/"><li>
+                <i class="fa fa-home" aria-hidden="true"></i>
+                Home</li>
+            </a>
             <a href="/logout"><li>
                 <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
                 Sair</li>
             </a> 
+             
         </ul>
     </aside>
     
@@ -71,6 +76,8 @@
             </form>
         </article>
         {% endif %}
+
+        {% if projetoEdit == undefined %}
         <article id="lista">
             <table>
 
@@ -89,10 +96,8 @@
                     <tr>
                         <td>{{p.id}}</td>
                         <td>{{p.nome}}</td>
-                        <td>{{p.imagem}}</td>
-                        <td>
-                            <a href="{{p.link}}" target="_blank">{{p.link}}</audio>
-                        </td>
+                        <td><a href="{{p.imagem}}" target="_blank">{{p.imagem}}</a></td>
+                        <td><a href="{{p.link}}" target="_blank">{{p.link}}</a></td>
                         <td>
                             <a href="/edit/{{p.id}}">Editar</a>
                             <a href="/{{p.id}}">Apagar</a>
@@ -103,6 +108,7 @@
 
             </table>
         </article>
+        {% endif %}
 
         {% if projetoEdit != undefined %}
         <article id="edit">

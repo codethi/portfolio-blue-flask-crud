@@ -75,7 +75,7 @@ a {
 }
 
 article#new {
-display: flex;
+display: none;
 justify-content: center;
 align-items: center;
 padding: 6rem;
@@ -183,7 +183,7 @@ form div a:hover {
   }
 
 article#lista {
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   padding: 6rem;
@@ -206,6 +206,14 @@ padding: 1rem;
 border-bottom: 1px solid #ddd;
 text-align: left;
 }
+
+article#lista table td {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 
 article#lista table a {
 padding: 1rem;
