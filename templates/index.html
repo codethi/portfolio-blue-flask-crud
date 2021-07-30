@@ -56,11 +56,11 @@
 
    <section id="projetos">
       
-      <a href="/new">Novo projeto</a>
+      <a id="config" href="/login"><i class="fa fa-cog" aria-hidden="true"></i></a>
 
       {% for p in projetos %}
-      <div>
-         <img src="https://i.imgur.com/yXIgwgo.png" alt="img-lorem">
+      <div id='card'>
+         <img src="{{p.imagem}}" alt="img-lorem">
          <h2>{{p.nome}}</h2>
          <p>{{p.descricao}}</p>
          <a href="{{p.link}}" target="_blank">Veja mais</a>
