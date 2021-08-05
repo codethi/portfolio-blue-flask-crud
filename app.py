@@ -155,7 +155,7 @@ def new():
 
 # Rota para buscar um id recebendo um paremetro
 @app.route('/<id>')
-def musica_pelo_id(id):
+def projeto_por_id(id):
    projeto = Projeto.query.get(id) # Busca um projeto por id no banco e coloca em projeto.
    return render_template('adm.html', projeto=projeto) # Renderiza a página adm.html passando o projeto encontrado na query.
 
