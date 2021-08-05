@@ -129,7 +129,7 @@ def adm():
       flash('Faça o login antes de entrar nessa rota!') # Mensagem de erro
       return redirect('/login') # Redireciona para o login
    projetos = Projeto.query.all() # Busca todos os projetos no banco e coloca na veriável projetos, que se transforma em uma lista.
-   return render_template('adm.html', projetos=projetos) # Caso esteja logado, renderiza a página adm.html passando a lista de projetos.
+   return render_template('adm.html', projetos=projetos, projeto='') # Caso esteja logado, renderiza a página adm.html passando a lista de projetos.
 
 #--------------------------------
 
@@ -164,17 +164,18 @@ def musica_pelo_id(id):
 # Rota edit que recebe um paremetro
 @app.route('/edit/<id>', methods=['GET', 'POST'])
 def edit(id):
-   projetoEdit = Projeto.query.get(id) # Busca um projeto no banco através do id
+   projeto = Projeto.query.get(id) # Busca um projeto no banco através do id
+   projetos = Projeto.query.all()
    if request.method == "POST": # Se a requisição for um POST, faça:
       # Alteração de todos os campos de projetoEdit selecionado no get id
-      projetoEdit.nome = request.form['nome']
-      projetoEdit.descricao = request.form['descricao']
-      projetoEdit.imagem = request.form['imagem']
-      projetoEdit.link = request.form['link']
+      projeto.nome = request.form['nome']
+      projeto.descricao = request.form['descricao']
+      projeto.imagem = request.form['imagem']
+      projeto.link = request.form['link']
       db.session.commit() # Confirma a operação
       return redirect('/adm') #Redireciona para a rota adm
    # Renderiza a página adm.html passando o projetoEdit (projeto a ser editado)
-   return render_template('adm.html', projetoEdit=projetoEdit) 
+   return render_template('adm.html', projeto=projeto, projetos=projetos) 
 
 # DELETE
 
